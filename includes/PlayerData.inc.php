@@ -1,10 +1,11 @@
 <?php 
 
 class PlayerData {
-    public $playerName = null;
-    public $playerId = null;
-    public $platform = null;
-    public $region = null;
+    private $playerName;
+    private $playerId;
+    private $platform;
+    private $region;
+    private $command;
 
     function processPlayerNameOrId($name, $id) {
         //Checks if players id or name was inserted or if both are inserted
@@ -27,7 +28,35 @@ class PlayerData {
         if (empty($platform)) {
             die('Missing platform');
         } else {
-            $this->platform = $platform;
+            //$this->platform = $platform;
+            switch ($platform) {
+                //Check for Uplay
+                case 'uplay':
+                $this->platform = 'uplay';
+                break;
+
+                case 'pc':
+                $this->platform = 'uplay';
+                break; 
+
+                //Check for PSN
+                case 'psn':
+                $this->platform = 'psn';
+                break;
+
+                case 'ps4':
+                $this->platform = 'psn';
+                break; 
+
+                //Check for XBL
+                case 'xbl':
+                $this->platform = 'xbl';
+                break;
+
+                case 'xbox':
+                $this->platform = 'xbl';
+                break;
+            }
         }
     }
 
@@ -35,7 +64,36 @@ class PlayerData {
         if (empty($region)) {
             die('Missing region');
         } else {
-            $this->region = $region;
+            switch (strtoupper($region)) {
+                //Check for Europe
+                case 'EU':
+                $this->region = 'EU';
+                break;
+
+                case 'EUROPE':
+                $this->region = 'EU';
+                break;
+
+                //Check for North America
+                case 'NA':
+                $this->region = 'NA';
+                break;
+    
+                case 'NORTHAMERICA':
+                $this->region = 'NA';
+                break;
+
+                //Check for Asia
+                case 'AS':
+                $this->region = 'AS';
+                break;
+        
+                case 'ASIA':
+                $this->region = 'AS';
+                break;
+            }
+        }
+    }
         }
     }
 }
