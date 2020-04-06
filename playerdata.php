@@ -7,6 +7,7 @@ $playerId = null;
 $playerName = null;
 $platform = null;
 $region = null;
+$command = null;
 
 //If set, Gets the player id value
 if (isset($_GET['p_id'])) {
@@ -39,3 +40,9 @@ if (isset($_GET['region'])) {
 
 //Checks if region was inserted
 $playerData->checkForRegion($region);
+
+//If set, gets the command value
+if (isset($_GET['command'])) {
+    $command = $_GET['command'];
+}
+
