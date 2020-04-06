@@ -1,11 +1,15 @@
 <?php 
 
+require_once('Rank.inc.php');
+
 class PlayerData {
     private $playerName;
     private $playerId;
     private $platform;
     private $region;
     private $command;
+
+    private $rank = new Rank();
 
     function processPlayerNameOrId($name, $id) {
         //Checks if players id or name was inserted or if both are inserted
@@ -117,4 +121,21 @@ class PlayerData {
             return $this->command;
         }
     }
+
+    function processRequest() {
+        switch ($this->command) {
+            case 'rank':
+                $rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
+                break;
+            
+                case 'stats':
+                //Insert get stats data method here
+                break;
+            
+                case 'time':
+                //Insert get time data method here
+                break;
+        }
+    }
+    
 }
