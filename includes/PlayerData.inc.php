@@ -94,6 +94,27 @@ class PlayerData {
             }
         }
     }
+    
+    function checkForCommand($command) {
+        switch ($command) {
+            case 'rank':
+            $this->command = 'rank';
+            return $this->command;
+            break;
+
+            case 'stats':
+            $this->command = 'stats';
+            return $this->command;
+            break;
+
+            case 'time':
+            $this->command = 'time';
+            return $this->command;
+            break;
+
+            default:
+            $this->command = 'rank';
+            return $this->command;
         }
     }
 }
