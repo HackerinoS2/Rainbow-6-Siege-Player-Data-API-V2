@@ -21,16 +21,8 @@ if (isset($_GET['p_name'])) {
 //Checks if players id or name was inserted or if both are inserted
 $playerData->processPlayerNameOrId($playerName, $playerId);
 
-/**
- * Dar refactory a partir daqui
- */
-
 //Defines player id/name property value
-if (!empty($playerId)) {
-    $playerData->playerId = $playerId;
-} elseif (!empty($playerName)) {
-    $playerData->playerName = $playerName;
-}
+$playerData->definePlayerNameOrId($playerName, $playerId);
 
 //If set, gets the platform value
 if (isset($_GET['platform'])) {
@@ -38,12 +30,7 @@ if (isset($_GET['platform'])) {
 }
 
 //Checks if platform was inserted
-if (empty($platform)) {
-    die('Missing platform');
-}
-
-//Defines platform property value
-$playerData->platform = $platform;
+$playerData->checkForPlatform($platform);
 
 //If set, gets the region value
 if (isset($_GET['region'])) {
@@ -51,9 +38,4 @@ if (isset($_GET['region'])) {
 }
 
 //Checks if region was inserted
-if (empty($region)) {
-    die('Missing region');
-}
-
-//Defines region property value
-$playerData->region = $region;
+$playerData->checkForRegion($region);
