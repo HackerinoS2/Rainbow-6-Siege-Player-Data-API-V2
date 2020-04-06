@@ -46,3 +46,5 @@ if (isset($_GET['command'])) {
     $command = $_GET['command'];
 }
 
+//Outputs the requested data
+$playerData->processRequest();
