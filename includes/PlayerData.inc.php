@@ -32,7 +32,6 @@ class PlayerData {
         if (empty($platform)) {
             die('Missing platform');
         } else {
-            //$this->platform = $platform;
             switch ($platform) {
                 //Check for Uplay
                 case 'uplay':
@@ -111,22 +110,18 @@ class PlayerData {
         switch ($command) {
             case 'rank':
             $this->command = 'rank';
-            return $this->command;
             break;
 
             case 'stats':
             $this->command = 'stats';
-            return $this->command;
             break;
 
             case 'time':
             $this->command = 'time';
-            return $this->command;
             break;
 
             default:
             $this->command = 'rank';
-            return $this->command;
         }
     }
 
