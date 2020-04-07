@@ -60,6 +60,10 @@ class PlayerData {
                 case 'xbox':
                 $this->platform = 'xbl';
                 break;
+
+                //If platform does not match any of the expected inputs, returns error
+                default:
+                die('Invalid platform inserted');
             }
         }
     }
