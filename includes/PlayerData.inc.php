@@ -95,6 +95,10 @@ class PlayerData {
                 case 'ASIA':
                 $this->region = 'AS';
                 break;
+
+                //If region does not match any of the expected inputs, returns error
+                default:
+                die('Invalid region inserted');
             }
         }
     }
