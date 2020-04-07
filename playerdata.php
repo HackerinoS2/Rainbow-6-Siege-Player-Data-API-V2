@@ -46,5 +46,8 @@ if (isset($_GET['command'])) {
     $command = $_GET['command'];
 }
 
+//Checks if command was inserted
+$playerData->checkForCommand($command);
+
 //Outputs the requested data
 $playerData->processRequest();
