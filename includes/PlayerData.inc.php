@@ -9,7 +9,11 @@ class PlayerData {
     private $region;
     private $command;
 
-    private $rank = new Rank();
+    private $rank;
+
+    function __construct() {
+        $this->rank = new Rank();
+    }
 
     function processPlayerNameOrId($name, $id) {
         //Checks if players id or name was inserted or if both are inserted
@@ -128,7 +132,7 @@ class PlayerData {
     function processRequest() {
         switch ($this->command) {
             case 'rank':
-                $rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
+                $this->rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
                 break;
             
                 case 'stats':
