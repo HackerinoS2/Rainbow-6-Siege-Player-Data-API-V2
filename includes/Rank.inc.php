@@ -13,24 +13,67 @@ class Rank {
         //Decodes the received JSON data to a variable
         $result = json_decode($playerDataRequest, true);
 
-        //Gets the necessary data from the results
-        $playerName = $result['players'][0]['profile']['p_name'];
-        $playerRegion = $region;
-        $playerRank = $result['players'][0]['profile'][$playerRegion . '_rank'];
-        $playerMMR = $result['players'][0]['profile'][$playerRegion . '_mmr'];
-        
-        /**
-         * To continue
+        /*
+         * Decoding the following (example)
+         * {
+            "status": 200,
+            "foundmatch": true,
+            "requested": "hacklason",
+            "players": {
+                "fbd7856f-2210-46a8-ae49-286aff3f2849": {
+                "profile": {
+                    "p_name": "Hacklason",
+                    "p_user": "fbd7856f-2210-46a8-ae49-286aff3f2849",
+                    "p_platform": "uplay",
+                    "verified": false
+                },
+                "refresh": {
+                    "x": 0,
+                    "s": 0
+                },
+                "stats": {
+                    "level": 58
+                },
+                "ranked": {
+                    "kd": 0.88,
+                    "mmr": 0,
+                    "rank": 0,
+                    "champ": 0,
+                    "NA_mmr": 0,
+                    "NA_rank": 0,
+                    "NA_champ": 0,
+                    "EU_mmr": 0,
+                    "EU_rank": 0,
+                    "EU_champ": 0,
+                    "AS_mmr": 0,
+                    "AS_rank": 0,
+                    "AS_champ": 0
+                }
+                }
+            }
+            }
+         * 
          */
 
         //If the request finds no results, output warning
         if ($result['foundmatch'] == false) {
             die("This player's data could not be found");
-        } else {
-            echo ""; //Setup output
-        }
+        } 
+        
+        //Saves the players data arrays with integers indexes
+        $players = array_values($result['players']);
 
-        //Region: '.$region.' | '.'Rank: '.$playerRankName.' | '.'MMR: '.$playerMMR.' | '.'Platform: '.strtoupper($platform).', '.$playerDataLastUpdated.', more info in '.$playerUrl
+        //Gets the necessary data from the results
+        $playerName = $players[0]['profile']['p_name'];
+        $playerUser = $players[0]['profile']['p_user'];
+        $playerRegion = $region;
+        $playerPlatform = strtoupper($platform);
+        $playerRank = $players[0]['ranked']['rank'];
+        $playerMMR = $players[0]['ranked'][$playerRegion . '_mmr'];
 
+        $playerURL = 'https://r6tab.com/player/' . $playerUser;
+
+        //Output results in plain text
+        echo "Region: $playerRegion | Rank: $playerRank | MMR: $playerMMR | Platform: $playerPlatform, more info in $playerURL"; //Setup output
     }
 }
