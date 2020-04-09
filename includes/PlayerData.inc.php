@@ -132,16 +132,20 @@ class PlayerData {
     function processRequest() {
         switch ($this->command) {
             case 'rank':
+            if (!empty($this->playerName)) {
                 $this->rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
-                break;
+            } elseif (!empty($this->playerId)) {
+                $this->rank->getPlayerRankById($this->playerId, $this->platform, $this->region);
+            }
+            break;
             
-                case 'stats':
-                //Insert get stats data method here
-                break;
+            case 'stats':
+            //Insert get stats data method here
+            break;
             
-                case 'time':
-                //Insert get time data method here
-                break;
+            case 'time':
+            //Insert get time data method here
+            break;
         }
     }
     
