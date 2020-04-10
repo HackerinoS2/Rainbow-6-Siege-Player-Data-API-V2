@@ -1,6 +1,7 @@
 <?php 
 
 require_once('Rank.inc.php');
+require_once('Stats.inc.php');
 
 class PlayerData {
     private $playerName;
@@ -10,9 +11,11 @@ class PlayerData {
     private $command;
 
     private $rank;
+    private $stats;
 
     function __construct() {
         $this->rank = new Rank();
+        $this->stats = new Stats();
     }
 
     function processPlayerNameOrId($name, $id) {
@@ -132,15 +135,19 @@ class PlayerData {
     function processRequest() {
         switch ($this->command) {
             case 'rank':
-            if (!empty($this->playerName)) {
-                $this->rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
-            } elseif (!empty($this->playerId)) {
-                $this->rank->getPlayerRankById($this->playerId, $this->platform, $this->region);
-            }
+                if (!empty($this->playerName)) {
+                    $this->rank->getPlayerRankByName($this->playerName, $this->platform, $this->region);
+                } elseif (!empty($this->playerId)) {
+                    $this->rank->getPlayerRankById($this->playerId, $this->platform, $this->region);
+                }
             break;
             
             case 'stats':
-            //Insert get stats data method here
+                if (!empty($this->playerName)) {
+                    $this->stats->getPlayerStatsByName($this->playerName, $this->platform, $this->region);
+                } elseif (!empty($this->playerId)) {
+                    $this->stats->getPlayerStatsById($this->playerId, $this->platform, $this->region);
+                }
             break;
             
             case 'time':
