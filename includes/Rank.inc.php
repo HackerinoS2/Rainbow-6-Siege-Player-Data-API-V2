@@ -1,7 +1,12 @@
 <?php
 
+require_once('Utils.inc.php');
+
 class Rank {
     function getPlayerRankByName($name, $platform, $region) {
+        //Temporary use of Utils
+        $utils = new Utils();
+
         //Gets player data from r6Tab API
         $playerDataRequest = file_get_contents("https://r6.apitab.com/search/$platform/$name");
 
@@ -72,13 +77,13 @@ class Rank {
         $playerMMR = $players[0]['ranked'][$playerRegion . '_mmr'];
 
         //Gets a JSON file that translates the ranks numbers to its name | Example: 1 = Copper V, 2 = Copper IV...
-        $ranksJSON = file_get_contents('r6ranks.json', true);
+        //$ranksJSON = file_get_contents('r6ranks.json', true);
 
         //Decodes the json file to a variable (array)
-        $r6Ranks = json_decode($ranksJSON, true);
+        //$r6Ranks = json_decode($ranksJSON, true);
 
         //Saves the real rank name
-        $playerRealRank = $r6Ranks[$playerRank];
+        $playerRealRank = $utils->mmrToRank($playerMMR);
 
         //Sets up the r6tab profile URL of the player using is "user" (player id)
         $playerURL = 'https://r6tab.com/player/' . $playerUser;
