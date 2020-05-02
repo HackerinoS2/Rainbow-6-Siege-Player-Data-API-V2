@@ -9,8 +9,13 @@ class Time {
          * all the player's data
          */
 
+        //Get the API key from the JSON file
+        $json = file_get_contents('includes/apikey.json');
+        $array = json_decode($json, true);
+        $apikey = $array['API_KEY'];
+
         //Gets player data from r6Tab API
-        $playerDataRequest = file_get_contents("https://r6.apitab.com/search/$platform/$name");
+        $playerDataRequest = file_get_contents("https://r6.apitab.com/search/$platform/$name?cid=$apikey");
 
         //Outputs error when can't connect to r6Tab API
         if (!$playerDataRequest) {
@@ -78,8 +83,13 @@ class Time {
     }
 
     function getPlayerTimeById($id, $platform, $region) {
+        //Get the API key from the JSON file
+        $json = file_get_contents('includes/apikey.json');
+        $array = json_decode($json, true);
+        $apikey = $array['API_KEY'];
+
         //Gets player data from r6Tab API
-        $playerDataRequest = file_get_contents("https://r6.apitab.com/player/$id");
+        $playerDataRequest = file_get_contents("https://r6.apitab.com/player/$id?cid=$apikey");
 
         //Outputs error when can't connect to r6Tab API
         if (!$playerDataRequest) {
