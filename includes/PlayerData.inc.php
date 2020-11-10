@@ -3,6 +3,7 @@
 require_once('Rank.inc.php');
 require_once('Stats.inc.php');
 require_once('Time.inc.php');
+require_once('ProfileImage.inc.php');
 
 class PlayerData {
     private $playerName;
@@ -14,11 +15,13 @@ class PlayerData {
     private $rank;
     private $stats;
     private $time;
+    private $profileImage;
 
     function __construct() {
         $this->rank = new Rank();
         $this->stats = new Stats();
         $this->time = new Time();
+        $this->profileImage = new ProfileImage();
     }
 
     function processPlayerNameOrId($name, $id) {
@@ -130,6 +133,10 @@ class PlayerData {
             $this->command = 'time';
             break;
 
+            case 'profile_image':
+            $this->command = 'profile_image';
+            break;
+
             default:
             $this->command = 'rank';
         }
@@ -158,6 +165,14 @@ class PlayerData {
                     $this->time->getPlayerTimeByName($this->playerName, $this->platform, $this->region);
                 } elseif (!empty($this->playerId)) {
                     $this->time->getPlayerTimeById($this->playerId, $this->platform, $this->region);
+                }
+            break;
+
+            case 'profile_image':
+                if (!empty($this->playerName)) {
+                    $this->profileImage->getPlayerProfileImageByName($this->playerName, $this->platform);
+                } elseif (!empty($this->playerId)) {
+                    $this->profileImage->getPlayerProfileImageById($this->playerId);
                 }
             break;
         }
