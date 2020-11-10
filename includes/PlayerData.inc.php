@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once('Rank.inc.php');
 require_once('Stats.inc.php');
@@ -50,7 +50,7 @@ class PlayerData {
 
                 case 'pc':
                 $this->platform = 'uplay';
-                break; 
+                break;
 
                 //Check for PSN
                 case 'psn':
@@ -59,7 +59,7 @@ class PlayerData {
 
                 case 'ps4':
                 $this->platform = 'psn';
-                break; 
+                break;
 
                 //Check for XBL
                 case 'xbl':
@@ -95,7 +95,7 @@ class PlayerData {
                 case 'NA':
                 $this->region = 'NA';
                 break;
-    
+
                 case 'NORTHAMERICA':
                 $this->region = 'NA';
                 break;
@@ -104,7 +104,7 @@ class PlayerData {
                 case 'AS':
                 $this->region = 'AS';
                 break;
-        
+
                 case 'ASIA':
                 $this->region = 'AS';
                 break;
@@ -115,7 +115,7 @@ class PlayerData {
             }
         }
     }
-    
+
     function checkForCommand($command) {
         switch ($command) {
             case 'rank':
@@ -144,7 +144,7 @@ class PlayerData {
                     $this->rank->getPlayerRankById($this->playerId, $this->platform, $this->region);
                 }
             break;
-            
+
             case 'stats':
                 if (!empty($this->playerName)) {
                     $this->stats->getPlayerStatsByName($this->playerName, $this->platform, $this->region);
@@ -152,7 +152,7 @@ class PlayerData {
                     $this->stats->getPlayerStatsById($this->playerId, $this->platform, $this->region);
                 }
             break;
-            
+
             case 'time':
                 if (!empty($this->playerName)) {
                     $this->time->getPlayerTimeByName($this->playerName, $this->platform, $this->region);
@@ -162,5 +162,5 @@ class PlayerData {
             break;
         }
     }
-    
+
 }

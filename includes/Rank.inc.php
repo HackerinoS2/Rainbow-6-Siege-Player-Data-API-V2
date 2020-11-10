@@ -62,14 +62,14 @@ class Rank {
                 }
             }
             }
-         * 
+         *
          */
 
         //If the request finds no results, output warning
         if ($result['foundmatch'] == false) {
             die("This player's data could not be found");
-        } 
-        
+        }
+
         //Saves the players data arrays with integers indexes
         $players = array_values($result['players']);
 

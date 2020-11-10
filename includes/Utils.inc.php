@@ -10,7 +10,7 @@ class Utils {
 
       function mmrToRank($mmr) {
           $rank;
-          
+
           if ($mmr == 0) {
               $rank = 'Unranked';
           } elseif ($mmr >= 1 && $mmr <= 1199) {

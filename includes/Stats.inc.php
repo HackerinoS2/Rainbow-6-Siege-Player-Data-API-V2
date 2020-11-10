@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 class Stats {
     function getPlayerStatsByName($name, $platform, $region) {
-        
+
         /**
          * Quick note: We cannot get the players stats with only
          * the player's name, we need to get the id so we can get
@@ -64,21 +64,21 @@ class Stats {
                 }
             }
             }
-         * 
+         *
          */
 
         //If the request finds no results, output warning
         if ($result['foundmatch'] == false) {
             die("This player's data could not be found");
-        } 
-        
+        }
+
         //Saves the players data arrays with integers indexes
         $players = array_values($result['players']);
 
         //Gets the player id to use in the other method
         $playerId = $players[0]['profile']['p_user'];
 
-        //Gives the ID to the method that will actually process the information 
+        //Gives the ID to the method that will actually process the information
         $this->getPlayerStatsById($playerId, $platform, $region);
     }
 
